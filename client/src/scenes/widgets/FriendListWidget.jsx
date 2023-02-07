@@ -22,8 +22,11 @@ const FriendListWidget = ({ userId }) => {
         },
       }
     );
-    const data = await response.json();
-    dispatch(setFriends({ friends: data }));
+    if(response.status===200){
+      const data = await response.json();
+      console.log(data)
+      dispatch(setFriends({ friends: data }));
+    }
   };
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const FriendListWidget = ({ userId }) => {
         Friend List
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
-        {friends.map((friend)=>{
+        {friends.map((friend)=>(
           <Friend
           key={friend._id}
           friendId={friend._id}
@@ -51,7 +54,7 @@ const FriendListWidget = ({ userId }) => {
           subtitle={friend.occupation}
           userPicturePath={friend.picturePath}
           />
-        })}
+        ))}
       </Box>
     </WidgetWrapper>
   );

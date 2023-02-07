@@ -28,7 +28,6 @@ const UserWidget = ({ userId, picturePath }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    console.log("the getUser data : ", data);
     setUser(data);
   };
 
@@ -37,7 +36,6 @@ const UserWidget = ({ userId, picturePath }) => {
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) {
-    console.log("user hei");
     return null;
   }
 
@@ -57,7 +55,7 @@ const UserWidget = ({ userId, picturePath }) => {
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
-        oncClick={() => navigate(`/profile/${userId}`)}
+        onClick={() => navigate(`/profile/${userId}`)}
       >
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />

@@ -1,5 +1,5 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
-import { Box, Divider, Typography, IconButton, useTheme } from "@mui/material";
+import { Box, Typography, IconButton, useTheme } from "@mui/material";
 import FlexBetween from "./FlexBetween";
 import { setFriends } from "state";
 import UserImage from "./UserImage";
@@ -32,9 +32,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         },
       }
     );
+    if(response.status===200){
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
-  };
+  }};
 
   return (
     <FlexBetween>
@@ -65,16 +66,16 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         </Box>
       </FlexBetween>
       <IconButton
-        onClick={() => patchFriend}
+        onClick={() => patchFriend()}
         sx={{
           backgroundColor: primaryLight,
           p: "0.6rem",
         }}
       >
         {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          <PersonRemoveOutlined sx={{ color: primaryDark }}  />
         ) : (
-          <PersonAddOutlined sx={{ color: primaryLight }} />
+          <PersonAddOutlined />
         )}
       </IconButton>
     </FlexBetween>

@@ -36,7 +36,7 @@ const PostWidget = ({
 
   const patchLike = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/posts/${postId}/like`,
+      `http://localhost:3001/posts/${postId}/like`,
       {
         method: "PATCH",
         headers: {
@@ -46,7 +46,9 @@ const PostWidget = ({
         body: JSON.stringify({ userId: loggedInUserId }),
       }
     );
+    console.log(response.message);
     const updatedPost = await response.json();
+    console.log(updatedPost);
     dispatch(setPost({ post: updatedPost }));
   };
 
@@ -72,7 +74,7 @@ const PostWidget = ({
       <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => patchLike}>
+            <IconButton onClick={() => patchLike()}>
               {isLiked ? (
                 <FavoriteOutlined sx={{ color: primary }} />
               ) : (
@@ -82,7 +84,7 @@ const PostWidget = ({
             <Typography>{likeCount}</Typography>
           </FlexBetween>
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => setIsComment}>
+            <IconButton onClick={() => setIsComment(!isComment)}>
               <ChatBubbleOutlineOutlined />
             </IconButton>
             <Typography>{comments.length}</Typography>
@@ -95,14 +97,14 @@ const PostWidget = ({
       </FlexBetween>
       {isComment && (
         <Box mt="0.5rem">
-        {comments.map((comment, i)=>{
+        { comments.map((comment, i) => (
           <Box key={`${name}-${i}`}>
           <Divider />
           <Typography sx={{color: main, m:"0.5rem 0", pl:"1rem"}}>
             {comment}
           </Typography>
           </Box>
-        })}
+        ))}
         <Divider />
         </Box>
       )}
