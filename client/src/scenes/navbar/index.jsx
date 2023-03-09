@@ -57,7 +57,7 @@ const Navbar = () => {
             },
           }}
         >
-          SocioPedia
+          SocialMedia
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
@@ -136,7 +136,9 @@ const Navbar = () => {
           <Box display="flex" justifyContent="flex-end" p="1rem">
             <IconButton
               onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
-            ></IconButton>
+            >
+              <Close />
+            </IconButton>
           </Box>
 
           {/* MENU ITEMS */}
