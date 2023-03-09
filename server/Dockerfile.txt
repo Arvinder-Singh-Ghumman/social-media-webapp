@@ -6,7 +6,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
 
-COPY . .
+COPY . /server
 
 EXPOSE 8080
 
