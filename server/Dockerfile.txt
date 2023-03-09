@@ -1,12 +1,12 @@
 FROM node:16
 
-WORKDIR /server
+WORKDIR /
 
 COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
 
-COPY . /server
+COPY . /
 
 EXPOSE 3001
 
