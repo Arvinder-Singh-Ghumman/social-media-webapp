@@ -6,7 +6,7 @@ export const verifyToken = async (req, res, next) => {
     let token = req.header("Authorization");
 
     if(!token) {
-      return res.status(403).send("Access Denied");
+      return res.status(403).send("Access Denied To you");
     }
 
     if(token.startsWith("Bearer ")) {
